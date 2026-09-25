@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>حلال أبو خالد</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+    background: #f5f7f6;
+    color: #17211b;
+}
+
+header {
+    background: linear-gradient(135deg, #176b3a, #2e9d59);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 0 0 28px 28px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 38px;
+}
+
+header p {
+    margin: 8px 0 0;
+    opacity: .9;
+    font-size: 18px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 22px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.stat {
+    background: white;
+    border-radius: 20px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 3px 14px rgba(0,0,0,.07);
+}
+
+.stat span {
+    display: block;
+    color: #66756c;
+}
+
+.stat strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 30px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.menu button {
+    border: 0;
+    border-radius: 22px;
+    padding: 30px 10px;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.herdButton {
+    background: #dff4e5;
+    color: #168344;
+}
+
+.birthButton {
+    background: #dcecff;
+    color: #1475d1;
+}
+
+.saleButton {
+    background: #f8e2f8;
+    color: #a72ab1;
+}
+
+.icon {
+    display: block;
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 14px rgba(0,0,0,.06);
+}
+
+.pageTitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.back {
+    border: 0;
+    background: #e7ece9;
+    padding: 12px 18px;
+    border-radius: 14px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin-top: 7px;
+    margin-bottom: 14px;
+    border: 1px solid #d6ddd8;
+    border-radius: 12px;
+    font-size: 17px;
+    background: white;
+}
+
+label {
+    font-weight: bold;
+}
+
+.save {
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    padding: 15px;
+    background: #188b49;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    background: #edf3ef;
+}
+
+th, td {
+    padding: 12px 8px;
+    text-align: center;
+    border-bottom: 1px solid #e5e9e6;
+}
+
+.delete {
+    background: #ffe5e5;
+    color: #c92727;
+    border: 0;
+    border-radius: 8px;
+    padding: 7px 10px;
+}
+
+.totalBox {
+    font-size: 22px;
+    font-weight: bold;
+    color: #176b3a;
+}
+
+@media(max-width: 700px) {
+    .menu,
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="home" class="page active">
+
+<header>
+    <h1>🐑 حلال أبو خالد</h1>
+    <p>إدارة قطيع الضأن</p>
+</header>
+
+<div class="container">
+
+    <div class="stats">
+
+        <div class="stat">
+            <span>القطيع</span>
+            <strong id="herdCount">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>المواليد</span>
+            <strong id="birthCount">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>إجمالي البيع</span>
+            <strong id="salesTotal">0</strong>
+        </div>
+
+    </div>
+
+    <div class="menu">
+
+        <button class="herdButton" onclick="openPage('herd')">
+            <span class="icon">📋</span>
+            سجل القطيع
+        </button>
+
+        <button class="birthButton" onclick="openPage('births')">
+            <span class="icon">💙</span>
+            المواليد
+        </button>
+
+        <button class="saleButton" onclick="openPage('sales')">
+            <span class="icon">🛒</span>
+            البيع
+        </button>
+
+    </div>
+
+</div>
+</div>
+
+
+<!-- سجل القطيع -->
+
+<div id="herd" class="page">
+
+<div class="container">
+
+<div class="pageTitle">
+<button class="back" onclick="openPage('home')">الرجوع للرئيسية</button>
+<h1>📋 سجل القطيع</h1>
+</div>
+
+<div class="card">
+
+<label>رقم النعجة</label>
+<input id="sheepNumber" type="text" inputmode="numeric">
+
+<label>تاريخ الميلاد</label>
+<input id="sheepBirthDate" type="date">
+
+<label>الحالة</label>
+
+<select id="sheepCondition">
+<option>جيدة</option>
+<option>تعبانة</option>
+</select>
+
+<button class="save" onclick="addSheep()">
+إضافة النعجة
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>النعاج المسجلة</h2>
+
+<div style="overflow:auto">
+
+<table>
+
+<thead>
+<tr>
+<th>الرقم</th>
+<th>تاريخ الميلاد</th>
+<th>الحالة</th>
+<th>العمر</th>
+<th>حذف</th>
+</tr>
+</thead>
+
+<tbody id="herdTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- المواليد -->
+
+<div id="births" class="page">
+
+<div class="container">
+
+<div class="pageTitle">
+<button class="back" onclick="openPage('home')">الرجوع للرئيسية</button>
+<h1>💙 المواليد</h1>
+</div>
+
+<div class="card">
+
+<label>رقم الأم</label>
+<input id="motherNumber" type="text" inputmode="numeric">
+
+<label>تاريخ الولادة</label>
+<input id="birthDate" type="date">
+
+<label>نوع المولود</label>
+
+<select id="birthType">
+<option value="طلي">طلي</option>
+<option value="رخلة">رخلة</option>
+<option value="طلي ورخلة">طلي ورخلة</option>
+<option value="طليان">طليان</option>
+<option value="رخلتين">رخلتين</option>
+</select>
+
+<button class="save" onclick="addBirth()">
+إضافة المولود
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>سجل المواليد</h2>
+
+<div style="overflow:auto">
+
+<table>
+
+<thead>
+<tr>
+<th>رقم الأم</th>
+<th>التاريخ</th>
+<th>النوع</th>
+<th>العمر</th>
+<th>الولادة المتوقعة</th>
+<th>حذف</th>
+</tr>
+</thead>
+
+<tbody id="birthTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- البيع -->
+
+<div id="sales" class="page">
+
+<div class="container">
+
+<div class="pageTitle">
+<button class="back" onclick="openPage('home')">الرجوع للرئيسية</button>
+<h1>🛒 البيع</h1>
+</div>
+
+<div class="card">
+
+<label>التاريخ</label>
+<input id="saleDate" type="date">
+
+<label>النوع</label>
+
+<select id="saleType">
+<option>نعجة</option>
+<option>فحل</option>
+<option>طلي</option>
+<option>رخلة</option>
+</select>
+
+<label>العدد</label>
+<input id="saleCount" type="number" min="1">
+
+<label>الرقم</label>
+<input id="saleNumber" type="text">
+
+<label>سعر الوحدة</label>
+<input id="salePrice" type="number" min="0" step="0.01">
+
+<button class="save" onclick="addSale()">
+تسجيل البيع
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="totalBox">
+إجمالي البيع:
+<span id="salesPageTotal">0</span>
+ريال
+</div>
+
+<div style="overflow:auto">
+
+<table>
+
+<thead>
+<tr>
+<th>التاريخ</th>
+<th>النوع</th>
+<th>العدد</th>
+<th>الرقم</th>
+<th>السعر</th>
+<th>الإجمالي</th>
+<th>حذف</th>
+</tr>
+</thead>
+
+<tbody id="salesTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+let herd = JSON.parse(localStorage.getItem("abuKhalidHerd")) || [];
+let births = JSON.parse(localStorage.getItem("abuKhalidBirths")) || [];
+let sales = JSON.parse(localStorage.getItem("abuKhalidSales")) || [];
+
+
+function openPage(page) {
+
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
+    });
+
+    document.getElementById(page).classList.add("active");
+
+    window.scrollTo(0,0);
+
+    updateAll();
+}
+
+
+function saveData() {
+
+    localStorage.setItem(
+        "abuKhalidHerd",
+        JSON.stringify(herd)
+    );
+
+    localStorage.setItem(
+        "abuKhalidBirths",
+        JSON.stringify(births)
+    );
+
+    localStorage.setItem(
+        "abuKhalidSales",
+        JSON.stringify(sales)
+    );
+}
+
+
+function addSheep() {
+
+    const number =
+        document.getElementById("sheepNumber").value.trim();
+
+    const birthDate =
+        document.getElementById("sheepBirthDate").value;
+
+    const condition =
+        document.getElementById("sheepCondition").value;
+
+    if (!number) {
+        alert("اكتب رقم النعجة");
+        return;
+    }
+
+    if (herd.some(s => s.number === number)) {
+        alert("رقم النعجة مسجل مسبقاً");
+        return;
+    }
+
+    herd.push({
+        number,
+        birthDate,
+        condition
+    });
+
+    document.getElementById("sheepNumber").value = "";
+    document.getElementById("sheepBirthDate").value = "";
+
+    saveData();
+    updateAll();
+
+    alert("تمت إضافة النعجة");
+}
+
+
+function addBirth() {
+
+    const mother =
+        document.getElementById("motherNumber").value.trim();
+
+    const date =
+        document.getElementById("birthDate").value;
+
+    const type =
+        document.getElementById("birthType").value;
+
+    if (!mother || !date) {
+        alert("أدخل رقم الأم وتاريخ الولادة");
+        return;
+    }
+
+    births.push({
+        mother,
+        date,
+        type
+    });
+
+    document.getElementById("motherNumber").value = "";
+
+    saveData();
+    updateAll();
+
+    alert("تم تسجيل المولود");
+}
+
+
+function addSale() {
+
+    const date =
+        document.getElementById("saleDate").value;
+
+    const type =
+        document.getElementById("saleType").value;
+
+    const count =
+        Number(document.getElementById("saleCount").value);
+
+    const number =
+        document.getElementById("saleNumber").value.trim();
+
+    const price =
+        Number(document.getElementById("salePrice").value);
+
+    if (!date || !count || !price) {
+        alert("أكمل بيانات البيع");
+        return;
+    }
+
+    sales.push({
+        date,
+        type,
+        count,
+        number,
+        price,
+        total: count * price
+    });
+
+    document.getElementById("saleCount").value = "";
+    document.getElementById("saleNumber").value = "";
+    document.getElementById("salePrice").value = "";
+
+    saveData();
+    updateAll();
+
+    alert("تم تسجيل البيع");
+}
+
+
+function deleteSheep(index) {
+
+    if (confirm("هل تريد حذف هذه النعجة؟")) {
+        herd.splice(index,1);
+        saveData();
+        updateAll();
+    }
+}
+
+
+function deleteBirth(index) {
+
+    if (confirm("هل تريد حذف هذا السجل؟")) {
+        births.splice(index,1);
+        saveData();
+        updateAll();
+    }
+}
+
+
+function deleteSale(index) {
+
+    if (confirm("هل تريد حذف عملية البيع؟")) {
+        sales.splice(index,1);
+        saveData();
+        updateAll();
+    }
+}
+
+
+function ageText(dateString) {
+
+    if (!dateString) return "-";
+
+    const start = new Date(dateString);
+    const today = new Date();
+
+    const days =
+        Math.max(
+            0,
+            Math.floor(
+                (today - start) / 86400000
+            )
+        );
+
+    if (days < 30) {
+        return days + " يوم";
+    }
+
+    const months =
+        Math.floor(days / 30);
+
+    if (months < 12) {
+        return months + " شهر";
+    }
+
+    const years =
+        Math.floor(months / 12);
+
+    const remainingMonths =
+        months % 12;
+
+    return years +
+        " سنة " +
+        remainingMonths +
+        " شهر";
+}
+
+
+function expectedBirth(dateString) {
+
+    if (!dateString) return "-";
+
+    const date = new Date(dateString);
+
+    date.setMonth(
+        date.getMonth() + 6
+    );
+
+    return date.toLocaleDateString("ar-SA");
+}
+
+
+function renderHerd() {
+
+    const table =
+        document.getElementById("herdTable");
+
+    table.innerHTML = "";
+
+    herd.forEach((sheep,index) => {
+
+        table.innerHTML += `
+        <tr>
+            <td>${sheep.number}</td>
+            <td>${sheep.birthDate || "-"}</td>
+            <td>${sheep.condition}</td>
+            <td>${ageText(sheep.birthDate)}</td>
+            <td>
+                <button class="delete"
+                onclick="deleteSheep(${index})">
+                حذف
+                </button>
+            </td>
+        </tr>
+        `;
+    });
+}
+
+
+function renderBirths() {
+
+    const table =
+        document.getElementById("birthTable");
+
+    table.innerHTML = "";
+
+    births.forEach((birth,index) => {
+
+        table.innerHTML += `
+        <tr>
+            <td>${birth.mother}</td>
+            <td>${birth.date}</td>
+            <td>${birth.type}</td>
+            <td>${ageText(birth.date)}</td>
+            <td>${expectedBirth(birth.date)}</td>
+            <td>
+                <button class="delete"
+                onclick="deleteBirth(${index})">
+                حذف
+                </button>
+            </td>
+        </tr>
+        `;
+    });
+}
+
+
+function renderSales() {
+
+    const table =
+        document.getElementById("salesTable");
+
+    table.innerHTML = "";
+
+    sales.forEach((sale,index) => {
+
+        table.innerHTML += `
+        <tr>
+            <td>${sale.date}</td>
+            <td>${sale.type}</td>
+            <td>${sale.count}</td>
+            <td>${sale.number || "-"}</td>
+            <td>${sale.price}</td>
+            <td>${sale.total}</td>
+            <td>
+                <button class="delete"
+                onclick="deleteSale(${index})">
+                حذف
+                </button>
+            </td>
+        </tr>
+        `;
+    });
+
+    const total =
+        sales.reduce(
+            (sum,sale) =>
+                sum + Number(sale.total),
+            0
+        );
+
+    document.getElementById(
+        "salesPageTotal"
+    ).textContent =
+        total.toLocaleString("ar-SA");
+
+    document.getElementById(
+        "salesTotal"
+    ).textContent =
+        total.toLocaleString("ar-SA");
+}
+
+
+function updateAll() {
+
+    document.getElementById(
+        "herdCount"
+    ).textContent =
+        herd.length;
+
+    document.getElementById(
+        "birthCount"
+    ).textContent =
+        births.length;
+
+    renderHerd();
+    renderBirths();
+    renderSales();
+}
+
+
+const today =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+document.getElementById(
+    "birthDate"
+).value = today;
+
+document.getElementById(
+    "saleDate"
+).value = today;
+
+updateAll();
+
+</script>
+
+</body>
+</html>
