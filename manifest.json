@@ -1,0 +1,12 @@
+{
+  "name": "حلال أبو خالد",
+  "short_name": "حلال أبو خالد",
+  "description": "برنامج إدارة الحلال",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1f6f43"
+}
