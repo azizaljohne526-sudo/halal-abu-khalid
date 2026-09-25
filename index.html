@@ -616,6 +616,34 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js");
 }
 </script>
+  <script>
+(async()=>{
+const K="AK_DEVICE",A="AK_ACTIVE";
+let d=localStorage.getItem(K);
+if(!d){
+ d="AK-"+crypto.randomUUID().slice(0,8).toUpperCase();
+ localStorage.setItem(K,d);
+}
+if(localStorage.getItem(A)!=="YES"){
+ const c=prompt("حلال أبو خالد\n\nرقم جهازك:\n"+d+"\n\nأرسل رقم الجهاز لأبو خالد، ثم أدخل كود التفعيل:");
+ if(c){
+  const x=new TextEncoder().encode(d+"|ABU-KHALID-2026");
+  const h=await crypto.subtle.digest("SHA-256",x);
+  const ok=Array.from(new Uint8Array(h)).slice(0,6).map(b=>b.toString(16).padStart(2,"0")).join("").toUpperCase();
+  if(c.trim().toUpperCase()===ok){
+   localStorage.setItem(A,"YES");
+   alert("تم تفعيل البرنامج بنجاح");
+   location.reload();
+  }else{
+   alert("كود التفعيل غير صحيح");
+   document.body.innerHTML="<h2 style='text-align:center;margin-top:100px'>🔒 البرنامج غير مُفعّل</h2>";
+  }
+ }else{
+  document.body.innerHTML="<h2 style='text-align:center;margin-top:100px'>🔒 البرنامج غير مُفعّل</h2>";
+ }
+}
+})();
+</script>
   </body>
   
 </html>
