@@ -115,10 +115,15 @@
         <button class="menuBtn" onclick="go('inventory')"><span>📦</span>جرد الحلال</button>
 
         <button class="menuBtn" onclick="go('alerts')"><span>🔔</span>تنبيهات الحلال</button>
+        
+</div>
+
+</div>
+</section>
         <button class="menuBtn" onclick="go('eweReport')"><span>🔎</span>تقرير نعجة</button>
         <button class="menuBtn" onclick="go('birthReport')"><span>📊</span>تقرير المواليد</button>
         <button class="menuBtn" onclick="go('periodReport')"><span>📆</span>تقرير الفترة</button>
-
+<button class="menuBtn" onclick="go('messages')"><span>💬</span> الرسائل</button>
         <button class="menuBtn" onclick="go('production')"><span>🏆</span>إنتاج النعاج</button>
         <button class="menuBtn" onclick="go('season')"><span>📅</span>موسم الولادات</button>
         <button class="menuBtn" onclick="go('profit')"><span>📈</span>الربح والخسارة</button>
@@ -251,7 +256,29 @@
     <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🔔 تنبيهات الحلال</h2></div>
     <div class="card" id="alertRows"></div>
     </div></section>
+<!-- الرسائل -->
+<section id="messages" class="page">
+<div class="wrap">
+<div class="top">
+<button class="back" onclick="go('home')">⬅ الرئيسية</button>
+<h2>💬 الرسائل</h2>
+</div>
 
+<div class="card">
+<label>نص الرسالة</label>
+<textarea id="msgText" rows="5" placeholder="اكتب الرسالة هنا"></textarea>
+
+<button class="primary" onclick="sendWhats()">💬 واتساب</button>
+<button class="primary" onclick="sendSMS()">📱 SMS</button>
+</div>
+
+<div class="card">
+<h3>📢 رسالة جماعية</h3>
+<button class="primary" onclick="sendGroup()">إرسال جماعي</button>
+</div>
+
+</div>
+</section>
     <!-- تقرير نعجة -->
     <section id="eweReport" class="page"><div class="wrap">
     <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🔎 تقرير نعجة</h2></div>
@@ -680,8 +707,24 @@
      const el=document.getElementById(id);if(el)el.value=today();
     });
     render();
-    </script>
+    
+function sendWhats(){
+  let t=document.getElementById("msgText").value;
+  if(!t) return alert("اكتب الرسالة أولاً");
+  window.open("https://wa.me/?text="+encodeURIComponent(t));
+}
 
+function sendSMS(){
+  let t=document.getElementById("msgText").value;
+  if(!t) return alert("اكتب الرسالة أولاً");
+  window.open("sms:?&body="+encodeURIComponent(t));
+}
+
+function sendGroup(){
+  let t=document.getElementById("msgText").value;
+  if(!t) return alert("اكتب الرسالة أولاً");
+  window.open("https://wa.me/?text="+encodeURIComponent(t));
+}
       <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("./sw.js");
