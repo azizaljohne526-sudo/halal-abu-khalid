@@ -77,6 +77,15 @@ async function makeCode(){
  "كود التفعيل:<br><br>"+code;
 }
 </script>
+<script>
+const adminPassword = "Azizaljohne";
 
+const enteredPassword = prompt("🔐 أدخل كلمة سر مولد الأكواد:");
+
+if (enteredPassword !== adminPassword) {
+  document.body.innerHTML =
+    "<h2 style='text-align:center;margin-top:100px'>🔒 كلمة السر غير صحيحة</h2>";
+}
+</script>
 </body>
 </html>
