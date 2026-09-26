@@ -1,649 +1,720 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="حلال أبو خالد">
-  <link rel="manifest" href="./manifest.json">
-<title>حلال أبو خالد</title>
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="حلال أبو خالد">
+      <link rel="manifest" href="./manifest.json">
+    <title>حلال أبو خالد</title>
 
-<style>
-:root{
-  --green:#198754;--green2:#0f6b40;--bg:#f4f7f5;--card:#fff;
-  --text:#17221b;--muted:#68756d;--border:#dfe6e1;
-  --red:#c93636;--orange:#e28b16;--blue:#2679d8;--purple:#8d4db3;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
-  background:var(--bg);color:var(--text)
-}
-body.dark{
-  --bg:#101512;--card:#1b231e;--text:#f2f6f3;--muted:#aab5ad;--border:#344039
-}
-header{
-  background:linear-gradient(135deg,var(--green2),#31a45f);
-  color:#fff;padding:26px 18px 32px;text-align:center;border-radius:0 0 28px 28px
-}
-header h1{margin:0;font-size:34px}
-header p{margin:7px 0 0;opacity:.9}
-.wrap{max-width:1100px;margin:auto;padding:18px}
-.page{display:none}.page.active{display:block}
-.stats,.menu{display:grid;gap:13px}
-.stats{grid-template-columns:repeat(4,1fr);margin-bottom:18px}
-.menu{grid-template-columns:repeat(3,1fr)}
-.card,.stat,.menuBtn{
-  background:var(--card);border:1px solid var(--border);border-radius:20px;
-  box-shadow:0 3px 12px #0000000d
-}
-.stat{text-align:center;padding:15px}
-.stat small{color:var(--muted);display:block}.stat b{font-size:27px}
-.menuBtn{
-  border:0;padding:24px 10px;font-size:18px;font-weight:700;color:var(--text);
-  cursor:pointer;min-height:112px
-}
-.menuBtn span{display:block;font-size:32px;margin-bottom:8px}
-.card{padding:18px;margin-bottom:16px}
-.top{display:flex;gap:10px;align-items:center;margin-bottom:15px}
-.top h2{margin:0}
-.back,.primary,.danger,.secondary{
-  border:0;border-radius:12px;padding:11px 15px;font-size:16px;font-weight:700;cursor:pointer
-}
-.back,.secondary{background:#e5ebe7;color:#17221b}
-.primary{background:var(--green);color:#fff;width:100%;padding:14px}
-.danger{background:#ffe2e2;color:#b82020}
-label{font-weight:700;display:block;margin:8px 0 5px}
-input,select,textarea{
-  width:100%;border:1px solid var(--border);background:var(--card);color:var(--text);
-  border-radius:11px;padding:12px;font-size:16px;margin-bottom:9px
-}
-textarea{min-height:100px;resize:vertical}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.tableWrap{overflow:auto}
-table{width:100%;border-collapse:collapse;white-space:nowrap}
-th,td{padding:10px 7px;text-align:center;border-bottom:1px solid var(--border)}
-th{background:#eaf1ec;color:#23352a}
-body.dark th{background:#29342d;color:#fff}
-.delete{border:0;background:#ffe3e3;color:#b52222;border-radius:8px;padding:7px 9px}
-.bigNumber{font-size:29px;font-weight:800;color:var(--green)}
-.notice{padding:12px;border-radius:12px;margin:8px 0;background:#fff3cd;color:#725600}
-.bad{background:#f8d7da;color:#842029}.good{background:#d1e7dd;color:#0f5132}
-.searchBox{max-width:450px}
-footer{text-align:center;color:var(--muted);padding:25px}
-@media(max-width:760px){
- .stats{grid-template-columns:1fr 1fr}.menu{grid-template-columns:1fr 1fr}
- .grid2,.grid3{grid-template-columns:1fr}
-}
-</style>
-</head>
+    <style>
+    :root{
+      --green:#198754;--green2:#0f6b40;--bg:#f4f7f5;--card:#fff;
+      --text:#17221b;--muted:#68756d;--border:#dfe6e1;
+      --red:#c93636;--orange:#e28b16;--blue:#2679d8;--purple:#8d4db3;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
+      background:var(--bg);color:var(--text)
+    }
+    body.dark{
+      --bg:#101512;--card:#1b231e;--text:#f2f6f3;--muted:#aab5ad;--border:#344039
+    }
+    header{
+      background:linear-gradient(135deg,var(--green2),#31a45f);
+      color:#fff;padding:26px 18px 32px;text-align:center;border-radius:0 0 28px 28px
+    }
+    header h1{margin:0;font-size:34px}
+    header p{margin:7px 0 0;opacity:.9}
+    .wrap{max-width:1100px;margin:auto;padding:18px}
+    .page{display:none}.page.active{display:block}
+    .stats,.menu{display:grid;gap:13px}
+    .stats{grid-template-columns:repeat(4,1fr);margin-bottom:18px}
+    .menu{grid-template-columns:repeat(3,1fr)}
+    .card,.stat,.menuBtn{
+      background:var(--card);border:1px solid var(--border);border-radius:20px;
+      box-shadow:0 3px 12px #0000000d
+    }
+    .stat{text-align:center;padding:15px}
+    .stat small{color:var(--muted);display:block}.stat b{font-size:27px}
+    .menuBtn{
+      border:0;padding:24px 10px;font-size:18px;font-weight:700;color:var(--text);
+      cursor:pointer;min-height:112px
+    }
+    .menuBtn span{display:block;font-size:32px;margin-bottom:8px}
+    .card{padding:18px;margin-bottom:16px}
+    .top{display:flex;gap:10px;align-items:center;margin-bottom:15px}
+    .top h2{margin:0}
+    .back,.primary,.danger,.secondary{
+      border:0;border-radius:12px;padding:11px 15px;font-size:16px;font-weight:700;cursor:pointer
+    }
+    .back,.secondary{background:#e5ebe7;color:#17221b}
+    .primary{background:var(--green);color:#fff;width:100%;padding:14px}
+    .danger{background:#ffe2e2;color:#b82020}
+    label{font-weight:700;display:block;margin:8px 0 5px}
+    input,select,textarea{
+      width:100%;border:1px solid var(--border);background:var(--card);color:var(--text);
+      border-radius:11px;padding:12px;font-size:16px;margin-bottom:9px
+    }
+    textarea{min-height:100px;resize:vertical}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .tableWrap{overflow:auto}
+    table{width:100%;border-collapse:collapse;white-space:nowrap}
+    th,td{padding:10px 7px;text-align:center;border-bottom:1px solid var(--border)}
+    th{background:#eaf1ec;color:#23352a}
+    body.dark th{background:#29342d;color:#fff}
+    .delete{border:0;background:#ffe3e3;color:#b52222;border-radius:8px;padding:7px 9px}
+    .bigNumber{font-size:29px;font-weight:800;color:var(--green)}
+    .notice{padding:12px;border-radius:12px;margin:8px 0;background:#fff3cd;color:#725600}
+    .bad{background:#f8d7da;color:#842029}.good{background:#d1e7dd;color:#0f5132}
+    .searchBox{max-width:450px}
+    footer{text-align:center;color:var(--muted);padding:25px}
+    @media(max-width:760px){
+     .stats{grid-template-columns:1fr 1fr}.menu{grid-template-columns:1fr 1fr}
+     .grid2,.grid3{grid-template-columns:1fr}
+    }
+    </style>
+    </head>
 
-<body>
+    <body>
 
-<section id="home" class="page active">
-<header>
-  <h1>🐑 حلال أبو خالد</h1>
-  <p>إدارة قطيع الضأن</p>
-</header>
+    <section id="home" class="page active">
+    <header>
+      <h1>🐑 حلال أبو خالد</h1>
+      <p>إدارة قطيع الضأن</p>
+    </header>
 
-<div class="wrap">
-  <div class="stats">
-    <div class="stat"><small>عدد القطيع</small><b id="sHerd">0</b></div>
-    <div class="stat"><small>المواليد</small><b id="sBirths">0</b></div>
-    <div class="stat"><small>الوفيات</small><b id="sDeaths">0</b></div>
-    <div class="stat"><small>صافي الربح</small><b id="sProfit">0</b></div>
-  </div>
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><small>عدد القطيع</small><b id="sHerd">0</b></div>
+        <div class="stat"><small>المواليد</small><b id="sBirths">0</b></div>
+        <div class="stat"><small>الوفيات</small><b id="sDeaths">0</b></div>
+        <div class="stat"><small>صافي الربح</small><b id="sProfit">0</b></div>
+      </div>
 
-  <div class="menu">
-    <button class="menuBtn" onclick="go('herd')"><span>🐑</span>سجل القطيع</button>
-    <button class="menuBtn" onclick="go('births')"><span>💙</span>المواليد</button>
-    <button class="menuBtn" onclick="go('deaths')"><span>⚫</span>الوفيات</button>
+      <div class="card">
+        <h2 style="margin-top:0">🚨 مطلوب اليوم</h2>
+        <div id="todayTasks"></div>
+      </div>
 
-    <button class="menuBtn" onclick="go('vaccines')"><span>💉</span>التطعيمات</button>
-    <button class="menuBtn" onclick="go('sales')"><span>🛒</span>البيع</button>
-    <button class="menuBtn" onclick="go('purchases')"><span>🧾</span>المشتريات</button>
+      <div class="menu">
+        <button class="menuBtn" onclick="go('herd')"><span>🐑</span>سجل القطيع</button>
+        <button class="menuBtn" onclick="go('births')"><span>💙</span>المواليد</button>
+        <button class="menuBtn" onclick="go('deaths')"><span>⚫</span>الوفيات</button>
 
-    <button class="menuBtn" onclick="go('expenses')"><span>💰</span>المصاريف</button>
-    <button class="menuBtn" onclick="go('notes')"><span>📝</span>الملاحظات</button>
-    <button class="menuBtn" onclick="go('inventory')"><span>📦</span>جرد الحلال</button>
+        <button class="menuBtn" onclick="go('vaccines')"><span>💉</span>التطعيمات</button>
+        <button class="menuBtn" onclick="go('sales')"><span>🛒</span>البيع</button>
+        <button class="menuBtn" onclick="go('purchases')"><span>🧾</span>المشتريات</button>
 
-    <button class="menuBtn" onclick="go('alerts')"><span>🔔</span>تنبيهات الحلال</button>
-    <button class="menuBtn" onclick="go('eweReport')"><span>🔎</span>تقرير نعجة</button>
-    <button class="menuBtn" onclick="go('birthReport')"><span>📊</span>تقرير المواليد</button>
+        <button class="menuBtn" onclick="go('expenses')"><span>💰</span>المصاريف</button>
+        <button class="menuBtn" onclick="go('notes')"><span>📝</span>الملاحظات</button>
+        <button class="menuBtn" onclick="go('inventory')"><span>📦</span>جرد الحلال</button>
 
-    <button class="menuBtn" onclick="go('production')"><span>🏆</span>إنتاج النعاج</button>
-    <button class="menuBtn" onclick="go('season')"><span>📅</span>موسم الولادات</button>
-    <button class="menuBtn" onclick="go('profit')"><span>📈</span>الربح والخسارة</button>
+        <button class="menuBtn" onclick="go('alerts')"><span>🔔</span>تنبيهات الحلال</button>
+        <button class="menuBtn" onclick="go('eweReport')"><span>🔎</span>تقرير نعجة</button>
+        <button class="menuBtn" onclick="go('birthReport')"><span>📊</span>تقرير المواليد</button>
+        <button class="menuBtn" onclick="go('periodReport')"><span>📆</span>تقرير الفترة</button>
 
-    <button class="menuBtn" onclick="go('summary')"><span>📋</span>الملخص</button>
-    <button class="menuBtn" onclick="go('activity')"><span>🕘</span>سجل الحركة</button>
-    <button class="menuBtn" onclick="go('backup')"><span>💾</span>النسخة الاحتياطية</button>
+        <button class="menuBtn" onclick="go('production')"><span>🏆</span>إنتاج النعاج</button>
+        <button class="menuBtn" onclick="go('season')"><span>📅</span>موسم الولادات</button>
+        <button class="menuBtn" onclick="go('profit')"><span>📈</span>الربح والخسارة</button>
 
-    <button class="menuBtn" onclick="toggleDark()"><span>🌙</span>ليلي / نهاري</button>
-    <button class="menuBtn" onclick="go('about')"><span>👤</span>نبذة عن صاحب المشروع</button>
-  </div>
-</div>
-<footer>حلال أبو خالد</footer>
-</section>
+        <button class="menuBtn" onclick="go('summary')"><span>📋</span>الملخص</button>
+        <button class="menuBtn" onclick="go('activity')"><span>🕘</span>سجل الحركة</button>
+        <button class="menuBtn" onclick="go('backup')"><span>💾</span>النسخة الاحتياطية</button>
 
-<!-- القطيع -->
-<section id="herd" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🐑 سجل القطيع</h2></div>
-<div class="card">
- <div class="grid2">
-  <div><label>رقم النعجة</label><input id="hNumber" inputmode="numeric"></div>
-  <div><label>تاريخ الميلاد</label><input id="hDOB" type="date"></div>
- </div>
- <label>الحالة</label><select id="hCondition"><option>جيدة</option><option>تعبانة</option></select>
- <button class="primary" onclick="addSheep()">إضافة نعجة</button>
-</div>
-<div class="card"><h3>العدد الكلي: <span id="herdTotal">0</span></h3>
-<div class="tableWrap"><table><thead><tr><th>الرقم</th><th>العمر</th><th>الحالة</th><th>آخر ولادة</th><th>الحالة الإنجابية</th><th>حذف</th></tr></thead><tbody id="herdRows"></tbody></table></div>
-</div></div></section>
+        <button class="menuBtn" onclick="toggleDark()"><span>🌙</span>ليلي / نهاري</button>
+        <button class="menuBtn" onclick="go('about')"><span>👤</span>نبذة عن صاحب المشروع</button>
+      </div>
+    </div>
+    <footer>حلال أبو خالد</footer>
+    </section>
 
-<!-- المواليد -->
-<section id="births" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>💙 المواليد</h2></div>
-<div class="card">
- <div class="grid2">
-  <div><label>رقم الأم</label><input id="bMother" inputmode="numeric"></div>
-  <div><label>تاريخ الولادة</label><input id="bDate" type="date"></div>
- </div>
- <label>نوع المواليد</label>
- <select id="bType">
-  <option>طلي</option><option>رخلة</option><option>طلي ورخلة</option>
-  <option>طليان</option><option>رخلتين</option>
- </select>
- <button class="primary" onclick="addBirth()">إضافة المواليد</button>
-</div>
-<div class="card"><div class="tableWrap"><table><thead><tr><th>الأم</th><th>التاريخ</th><th>النوع</th><th>المجموع</th><th>العمر</th><th>الولادة المتوقعة</th><th>حذف</th></tr></thead><tbody id="birthRows"></tbody></table></div></div>
-</div></section>
+    <!-- القطيع -->
+    <section id="herd" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🐑 سجل القطيع</h2></div>
+    <div class="card">
+     <div class="grid2">
+      <div><label>رقم النعجة</label><input id="hNumber" inputmode="numeric"></div>
+      <div><label>تاريخ الميلاد</label><input id="hDOB" type="date"></div>
+     </div>
+     <label>الحالة</label><select id="hCondition"><option>جيدة</option><option>تعبانة</option></select>
+     <button class="primary" onclick="addSheep()">إضافة نعجة</button>
+    </div>
+    <div class="card"><h3>العدد الكلي: <span id="herdTotal">0</span></h3>
+    <div class="tableWrap"><table><thead><tr><th>الرقم</th><th>العمر</th><th>الحالة</th><th>آخر ولادة</th><th>الحالة الإنجابية</th><th>حذف</th></tr></thead><tbody id="herdRows"></tbody></table></div>
+    </div></div></section>
 
-<!-- الوفيات -->
-<section id="deaths" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>⚫ الوفيات</h2></div>
-<div class="card">
-<div class="grid2"><div><label>التاريخ</label><input id="dDate" type="date"></div><div><label>رقم الحيوان</label><input id="dNumber"></div></div>
-<div class="grid2"><div><label>النوع</label><select id="dType"><option>نعجة</option><option>فحل</option><option>طلي</option><option>رخلة</option></select></div><div><label>العدد</label><input id="dCount" type="number" min="1" value="1"></div></div>
-<button class="primary" onclick="addDeath()">تسجيل وفاة</button>
-</div>
-<div class="card"><div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>الرقم</th><th>النوع</th><th>العدد</th><th>حذف</th></tr></thead><tbody id="deathRows"></tbody></table></div></div>
-</div></section>
+    <!-- المواليد -->
+    <section id="births" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>💙 المواليد</h2></div>
+    <div class="card">
+     <div class="grid2">
+      <div><label>رقم الأم</label><input id="bMother" inputmode="numeric"></div>
+      <div><label>تاريخ الولادة</label><input id="bDate" type="date"></div>
+     </div>
+     <label>نوع المواليد</label>
+     <select id="bType">
+      <option>طلي</option><option>رخلة</option><option>طلي ورخلة</option>
+      <option>طليان</option><option>رخلتين</option>
+     </select>
+     <button class="primary" onclick="addBirth()">إضافة المواليد</button>
+    </div>
+    <div class="card"><div class="tableWrap"><table><thead><tr><th>الأم</th><th>التاريخ</th><th>النوع</th><th>المجموع</th><th>العمر</th><th>الولادة المتوقعة</th><th>حذف</th></tr></thead><tbody id="birthRows"></tbody></table></div></div>
+    </div></section>
 
-<!-- التطعيمات -->
-<section id="vaccines" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>💉 التطعيمات</h2></div>
-<div class="card">
-<div class="grid2"><div><label>رقم الحيوان</label><input id="vNumber"></div><div><label>تاريخ التطعيم</label><input id="vDate" type="date"></div></div>
-<label>نوع التطعيم</label><select id="vType"><option>هويجر</option><option>طعون</option><option>دموي</option><option>معوي</option><option>جدري</option><option>دود</option></select>
-<button class="primary" onclick="addVaccine()">إضافة التطعيم</button>
-</div>
-<div class="card"><div class="tableWrap"><table><thead><tr><th>الرقم</th><th>التطعيم</th><th>التاريخ</th><th>الموعد القادم</th><th>المتبقي</th><th>حذف</th></tr></thead><tbody id="vaccineRows"></tbody></table></div></div>
-</div></section>
+    <!-- الوفيات -->
+    <section id="deaths" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>⚫ الوفيات</h2></div>
+    <div class="card">
+    <div class="grid2"><div><label>التاريخ</label><input id="dDate" type="date"></div><div><label>رقم الحيوان</label><input id="dNumber"></div></div>
+    <div class="grid2"><div><label>النوع</label><select id="dType"><option>نعجة</option><option>فحل</option><option>طلي</option><option>رخلة</option></select></div><div><label>العدد</label><input id="dCount" type="number" min="1" value="1"></div></div>
+    <button class="primary" onclick="addDeath()">تسجيل وفاة</button>
+    </div>
+    <div class="card"><div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>الرقم</th><th>النوع</th><th>العدد</th><th>حذف</th></tr></thead><tbody id="deathRows"></tbody></table></div></div>
+    </div></section>
 
-<!-- البيع -->
-<section id="sales" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🛒 البيع</h2></div>
-<div class="card">
-<div class="grid3">
-<div><label>التاريخ</label><input id="sDate" type="date"></div>
-<div><label>النوع</label><select id="sType"><option>نعجة</option><option>فحل</option><option>طلي</option><option>رخلة</option></select></div>
-<div><label>العدد</label><input id="sCount" type="number" min="1"></div>
-</div>
-<div class="grid2"><div><label>الرقم</label><input id="sNumber"></div><div><label>سعر الوحدة</label><input id="sPrice" type="number" min="0"></div></div>
-<button class="primary" onclick="addSale()">تسجيل البيع</button>
-</div>
-<div class="card"><h3>إجمالي البيع: <span id="salesTotal">0</span> ريال</h3>
-<div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>العدد</th><th>الرقم</th><th>السعر</th><th>الإجمالي</th><th>حذف</th></tr></thead><tbody id="saleRows"></tbody></table></div></div>
-</div></section>
+    <!-- التطعيمات -->
+    <section id="vaccines" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>💉 التطعيمات</h2></div>
+    <div class="card">
+    <div class="grid2"><div><label>رقم الحيوان</label><input id="vNumber"></div><div><label>تاريخ التطعيم</label><input id="vDate" type="date"></div></div>
+    <label>نوع التطعيم</label><select id="vType"><option>هويجر</option><option>طعون</option><option>دموي</option><option>معوي</option><option>جدري</option><option>دود</option></select>
+    <button class="primary" onclick="addVaccine()">إضافة التطعيم</button>
+    </div>
+    <div class="card"><div class="tableWrap"><table><thead><tr><th>الرقم</th><th>التطعيم</th><th>التاريخ</th><th>الموعد القادم</th><th>المتبقي</th><th>حذف</th></tr></thead><tbody id="vaccineRows"></tbody></table></div></div>
+    </div></section>
 
-<!-- المشتريات -->
-<section id="purchases" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🧾 المشتريات</h2></div>
-<div class="card">
-<div class="grid2"><div><label>التاريخ</label><input id="pDate" type="date"></div><div><label>النوع</label><select id="pType"><option>نعجة</option><option>فحل</option><option>طلي</option><option>رخلة</option><option>أخرى</option></select></div></div>
-<div class="grid2"><div><label>الكمية</label><input id="pQty" type="number" min="1"></div><div><label>سعر الوحدة</label><input id="pPrice" type="number" min="0"></div></div>
-<button class="primary" onclick="addPurchase()">إضافة المشتريات</button>
-</div>
-<div class="card"><h3>الإجمالي: <span id="purchaseTotal">0</span> ريال</h3><div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th><th>حذف</th></tr></thead><tbody id="purchaseRows"></tbody></table></div></div>
-</div></section>
+    <!-- البيع -->
+    <section id="sales" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🛒 البيع</h2></div>
+    <div class="card">
+    <div class="grid3">
+    <div><label>التاريخ</label><input id="sDate" type="date"></div>
+    <div><label>النوع</label><select id="sType"><option>نعجة</option><option>فحل</option><option>طلي</option><option>رخلة</option></select></div>
+    <div><label>العدد</label><input id="sCount" type="number" min="1"></div>
+    </div>
+    <div class="grid2"><div><label>الرقم</label><input id="sNumber"></div><div><label>سعر الوحدة</label><input id="sPrice" type="number" min="0"></div></div>
+    <div class="grid2"><div><label>اسم المشتري</label><input id="sBuyerName"></div><div><label>رقم الجوال</label><input id="sBuyerPhone" inputmode="tel"></div></div>
+    <button class="primary" onclick="addSale()">تسجيل البيع</button>
+    </div>
+    <div class="card"><h3>إجمالي البيع: <span id="salesTotal">0</span> ريال</h3>
+    <div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>العدد</th><th>الرقم</th><th>السعر</th><th>الإجمالي</th><th>اسم المشتري</th><th>رقم الجوال</th><th>حذف</th></tr></thead><tbody id="saleRows"></tbody></table></div></div>
+    </div></section>
 
-<!-- المصاريف -->
-<section id="expenses" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>💰 المصاريف</h2></div>
-<div class="card">
-<div class="grid2"><div><label>التاريخ</label><input id="eDate" type="date"></div><div><label>النوع</label><select id="eType"><option>أكل</option><option>علاج</option></select></div></div>
-<div class="grid2"><div><label>الكمية</label><input id="eQty" type="number" min="1"></div><div><label>السعر</label><input id="ePrice" type="number" min="0"></div></div>
-<button class="primary" onclick="addExpense()">إضافة المصروف</button>
-</div>
-<div class="card"><h3>إجمالي المصاريف: <span id="expenseTotal">0</span> ريال</h3><div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th><th>حذف</th></tr></thead><tbody id="expenseRows"></tbody></table></div></div>
-</div></section>
+    <!-- المشتريات -->
+    <section id="purchases" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🧾 المشتريات</h2></div>
+    <div class="card">
+    <div class="grid2"><div><label>التاريخ</label><input id="pDate" type="date"></div><div><label>النوع</label><select id="pType"><option>علف</option><option>شعير</option><option>مكعبات</option><option>خبز</option><option>شبوك</option><option>أخرى</option></select></div></div>
+    <div class="grid2"><div><label>الكمية</label><input id="pQty" type="number" min="1"></div><div><label>سعر الوحدة</label><input id="pPrice" type="number" min="0"></div></div>
+    <button class="primary" onclick="addPurchase()">إضافة المشتريات</button>
+    </div>
+    <div class="card"><h3>الإجمالي: <span id="purchaseTotal">0</span> ريال</h3><div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th><th>حذف</th></tr></thead><tbody id="purchaseRows"></tbody></table></div></div>
+    </div></section>
 
-<!-- الملاحظات -->
-<section id="notes" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📝 الملاحظات</h2></div>
-<div class="card"><label>التاريخ</label><input id="nDate" type="date"><label>الملاحظة</label><textarea id="nText"></textarea><button class="primary" onclick="addNote()">حفظ الملاحظة</button></div>
-<div class="card" id="noteRows"></div>
-</div></section>
+    <!-- المصاريف -->
+    <section id="expenses" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>💰 المصاريف</h2></div>
+    <div class="card">
+    <div class="grid2"><div><label>التاريخ</label><input id="eDate" type="date"></div><div><label>النوع</label><select id="eType"><option>أكل</option><option>علاج</option></select></div></div>
+    <div class="grid2"><div><label>الكمية</label><input id="eQty" type="number" min="1"></div><div><label>السعر</label><input id="ePrice" type="number" min="0"></div></div>
+    <button class="primary" onclick="addExpense()">إضافة المصروف</button>
+    </div>
+    <div class="card"><h3>إجمالي المصاريف: <span id="expenseTotal">0</span> ريال</h3><div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th><th>حذف</th></tr></thead><tbody id="expenseRows"></tbody></table></div></div>
+    </div></section>
 
-<!-- الجرد -->
-<section id="inventory" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📦 جرد الحلال</h2></div>
-<div class="card">
-<label>التاريخ</label><input id="iDate" type="date">
-<div class="grid2"><div><label>النعاج</label><input id="iEwes" type="number" min="0"></div><div><label>الفحول</label><input id="iRams" type="number" min="0"></div><div><label>الطليان</label><input id="iMales" type="number" min="0"></div><div><label>الرخال</label><input id="iFemales" type="number" min="0"></div></div>
-<button class="primary" onclick="addInventory()">حفظ الجرد</button>
-</div>
-<div class="card"><div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>نعاج</th><th>فحول</th><th>طليان</th><th>رخال</th><th>المجموع</th><th>حذف</th></tr></thead><tbody id="inventoryRows"></tbody></table></div></div>
-</div></section>
+    <!-- الملاحظات -->
+    <section id="notes" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📝 الملاحظات</h2></div>
+    <div class="card"><label>التاريخ</label><input id="nDate" type="date"><label>الملاحظة</label><textarea id="nText"></textarea><button class="primary" onclick="addNote()">حفظ الملاحظة</button></div>
+    <div class="card" id="noteRows"></div>
+    </div></section>
 
-<!-- التنبيهات -->
-<section id="alerts" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🔔 تنبيهات الحلال</h2></div>
-<div class="card" id="alertRows"></div>
-</div></section>
+    <!-- الجرد -->
+    <section id="inventory" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📦 جرد الحلال</h2></div>
+    <div class="card">
+    <label>التاريخ</label><input id="iDate" type="date">
+    <div class="grid2"><div><label>النعاج</label><input id="iEwes" type="number" min="0"></div><div><label>الفحول</label><input id="iRams" type="number" min="0"></div><div><label>الطليان</label><input id="iMales" type="number" min="0"></div><div><label>الرخال</label><input id="iFemales" type="number" min="0"></div></div>
+    <button class="primary" onclick="addInventory()">حفظ الجرد</button>
+    </div>
+    <div class="card"><div class="tableWrap"><table><thead><tr><th>التاريخ</th><th>نعاج</th><th>فحول</th><th>طليان</th><th>رخال</th><th>المجموع</th><th>حذف</th></tr></thead><tbody id="inventoryRows"></tbody></table></div></div>
+    </div></section>
 
-<!-- تقرير نعجة -->
-<section id="eweReport" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🔎 تقرير نعجة</h2></div>
-<div class="card"><label>رقم النعجة</label><input class="searchBox" id="reportNumber"><button class="primary" onclick="showEweReport()">عرض التقرير</button></div>
-<div class="card" id="eweReportResult">اكتب رقم النعجة لعرض التقرير.</div>
-</div></section>
+    <!-- التنبيهات -->
+    <section id="alerts" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🔔 تنبيهات الحلال</h2></div>
+    <div class="card" id="alertRows"></div>
+    </div></section>
 
-<!-- تقرير المواليد -->
-<section id="birthReport" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📊 تقرير المواليد</h2></div>
-<div class="card" id="birthReportResult"></div>
-</div></section>
+    <!-- تقرير نعجة -->
+    <section id="eweReport" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🔎 تقرير نعجة</h2></div>
+    <div class="card"><label>رقم النعجة</label><input class="searchBox" id="reportNumber"><button class="primary" onclick="showEweReport()">عرض التقرير</button></div>
+    <div class="card" id="eweReportResult">اكتب رقم النعجة لعرض التقرير.</div>
+    </div></section>
 
-<!-- إنتاج النعاج -->
-<section id="production" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🏆 إنتاج النعاج</h2></div>
-<div class="card"><div class="tableWrap"><table><thead><tr><th>رقم النعجة</th><th>عدد الولادات</th><th>طليان</th><th>رخال</th><th>الإجمالي</th><th>آخر ولادة</th></tr></thead><tbody id="productionRows"></tbody></table></div></div>
-</div></section>
+    <!-- تقرير المواليد -->
+    <section id="birthReport" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📊 تقرير المواليد</h2></div>
+    <div class="card" id="birthReportResult"></div>
+    </div></section>
 
-<!-- الموسم -->
-<section id="season" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📅 موسم الولادات</h2></div>
-<div class="card">
-<div class="grid2"><div><label>من</label><input id="seasonFrom" type="date"></div><div><label>إلى</label><input id="seasonTo" type="date"></div></div>
-<button class="primary" onclick="showSeason()">عرض التقرير</button>
-</div>
-<div class="card" id="seasonResult">اختر الفترة.</div>
-</div></section>
+    <!-- تقرير الفترة -->
+    <section id="periodReport" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📆 تقرير الفترة</h2></div>
+    <div class="card">
+    <label>اختر الفترة</label>
+    <select id="periodMonths" onchange="renderPeriodReport()"><option value="1">شهر</option><option value="3">3 شهور</option><option value="6">6 شهور</option><option value="12">سنة</option></select>
+    </div>
+    <div class="card" id="periodReportResult"></div>
+    </div></section>
 
-<!-- الربح -->
-<section id="profit" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📈 الربح والخسارة</h2></div>
-<div class="card" id="profitResult"></div>
-</div></section>
+    <!-- إنتاج النعاج -->
+    <section id="production" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🏆 إنتاج النعاج</h2></div>
+    <div class="card"><div class="tableWrap"><table><thead><tr><th>رقم النعجة</th><th>عدد الولادات</th><th>طليان</th><th>رخال</th><th>الإجمالي</th><th>آخر ولادة</th></tr></thead><tbody id="productionRows"></tbody></table></div></div>
+    </div></section>
 
-<!-- الملخص -->
-<section id="summary" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📋 الملخص</h2></div>
-<div class="card" id="summaryResult"></div>
-</div></section>
+    <!-- الموسم -->
+    <section id="season" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📅 موسم الولادات</h2></div>
+    <div class="card">
+    <div class="grid2"><div><label>من</label><input id="seasonFrom" type="date"></div><div><label>إلى</label><input id="seasonTo" type="date"></div></div>
+    <button class="primary" onclick="showSeason()">عرض التقرير</button>
+    </div>
+    <div class="card" id="seasonResult">اختر الفترة.</div>
+    </div></section>
 
-<!-- سجل الحركة -->
-<section id="activity" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🕘 سجل الحركة</h2></div>
-<div class="card" id="activityRows"></div>
-</div></section>
+    <!-- الربح -->
+    <section id="profit" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📈 الربح والخسارة</h2></div>
+    <div class="card" id="profitResult"></div>
+    </div></section>
 
-<!-- النسخ -->
-<section id="backup" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>💾 النسخة الاحتياطية</h2></div>
-<div class="card">
-<p>احفظ نسخة من جميع بيانات حلال أبو خالد.</p>
-<button class="primary" onclick="exportBackup()">تنزيل نسخة احتياطية</button>
-<br><br>
-<label>استعادة نسخة احتياطية</label>
-<input id="backupFile" type="file" accept=".json,application/json">
-<button class="primary" onclick="importBackup()">استعادة النسخة</button>
-</div>
-</div></section>
+    <!-- الملخص -->
+    <section id="summary" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>📋 الملخص</h2></div>
+    <div class="card" id="summaryResult"></div>
+    </div></section>
 
-<!-- نبذة -->
-<section id="about" class="page"><div class="wrap">
-<div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>👤 نبذة عن صاحب المشروع</h2></div>
-<div class="card">
-<h2>حلال أبو خالد</h2>
-<p><b>الاسم:</b> عزيز مصلح الجهني</p>
-<p><b>الكنية:</b> أبو خالد</p>
-<p><b>رقم الجوال:</b> 0564554878</p>
-</div>
-</div></section>
+    <!-- سجل الحركة -->
+    <section id="activity" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>🕘 سجل الحركة</h2></div>
+    <div class="card" id="activityRows"></div>
+    </div></section>
 
-<script>
-const KEY="halalAbuKhalidFullV1";
+    <!-- النسخ -->
+    <section id="backup" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>💾 النسخة الاحتياطية</h2></div>
+    <div class="card">
+    <p>احفظ نسخة من جميع بيانات حلال أبو خالد.</p>
+    <button class="primary" onclick="exportBackup()">تنزيل نسخة احتياطية</button>
+    <br><br>
+    <label>استعادة نسخة احتياطية</label>
+    <input id="backupFile" type="file" accept=".json,application/json">
+    <button class="primary" onclick="importBackup()">استعادة النسخة</button>
+    </div>
+    </div></section>
 
-let db={
- herd:[],births:[],deaths:[],vaccines:[],sales:[],purchases:[],
- expenses:[],notes:[],inventory:[],activity:[]
-};
+    <!-- نبذة -->
+    <section id="about" class="page"><div class="wrap">
+    <div class="top"><button class="back" onclick="go('home')">← الرئيسية</button><h2>👤 نبذة عن صاحب المشروع</h2></div>
+    <div class="card">
+    <h2>حلال أبو خالد</h2>
+    <p><b>الاسم:</b> عزيز مصلح الجهني</p>
+    <p><b>الكنية:</b> أبو خالد</p>
+    <p><b>رقم الجوال:</b> 0564554878</p>
+    </div>
+    </div></section>
 
-function load(){
- try{
-  const x=JSON.parse(localStorage.getItem(KEY));
-  if(x) db={...db,...x};
- }catch(e){}
-}
-function save(){localStorage.setItem(KEY,JSON.stringify(db));}
-function esc(v){
- return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-}
-function money(n){return Number(n||0).toLocaleString("ar-SA",{maximumFractionDigits:2});}
-function today(){return new Date().toISOString().slice(0,10);}
-function dateObj(s){return s?new Date(s+"T12:00:00"):null;}
-function daysBetween(a,b=new Date()){
- const d=dateObj(a); if(!d)return 0;
- return Math.floor((b-d)/86400000);
-}
-function ageText(s){
- const d=daysBetween(s);
- if(d<30)return d+" يوم";
- const m=Math.floor(d/30);
- if(m<12)return m+" شهر";
- return Math.floor(m/12)+" سنة و "+(m%12)+" شهر";
-}
-function addMonths(s,m){
- const d=dateObj(s);if(!d)return "";
- d.setMonth(d.getMonth()+m);
- return d.toISOString().slice(0,10);
-}
-function birthCounts(type){
- if(type==="طلي")return [1,0];
- if(type==="رخلة")return [0,1];
- if(type==="طلي ورخلة")return [1,1];
- if(type==="طليان")return [2,0];
- if(type==="رخلتين")return [0,2];
- return [0,0];
-}
-function log(action,details){
- db.activity.unshift({date:new Date().toLocaleString("ar-SA"),action,details});
- if(db.activity.length>300)db.activity.pop();
-}
-function go(id){
- document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- window.scrollTo(0,0);render();
-}
-function toggleDark(){
- document.body.classList.toggle("dark");
- localStorage.setItem("halalDark",document.body.classList.contains("dark")?"1":"0");
-}
-if(localStorage.getItem("halalDark")==="1")document.body.classList.add("dark");
+    <script>
+    const KEY="halalAbuKhalidFullV1";
 
-function addSheep(){
- const number=hNumber.value.trim();
- if(!number)return alert("اكتب رقم النعجة");
- if(db.herd.some(x=>x.number===number))return alert("رقم النعجة مسجل مسبقاً");
- db.herd.push({number,dob:hDOB.value,condition:hCondition.value});
- log("إضافة نعجة","رقم "+number);save();hNumber.value="";render();alert("تمت إضافة النعجة");
-}
-function addBirth(){
- const mother=bMother.value.trim(),date=bDate.value,type=bType.value;
- if(!mother||!date)return alert("أدخل رقم الأم وتاريخ الولادة");
- const [male,female]=birthCounts(type);
- db.births.push({mother,date,type,male,female,total:male+female});
- log("تسجيل ولادة","الأم "+mother+" - "+type);save();bMother.value="";render();alert("تم تسجيل الولادة");
-}
-function addDeath(){
- const date=dDate.value,type=dType.value,count=Number(dCount.value||1),number=dNumber.value.trim();
- if(!date||count<1)return alert("أكمل بيانات الوفاة");
- db.deaths.push({date,type,count,number});
- if(type==="نعجة"&&number){
-  const i=db.herd.findIndex(x=>x.number===number);
-  if(i>=0)db.herd.splice(i,1);
- }
- log("تسجيل وفاة",type+" عدد "+count);save();render();alert("تم تسجيل الوفاة");
-}
-function addVaccine(){
- const number=vNumber.value.trim(),date=vDate.value,type=vType.value;
- if(!date)return alert("اختر تاريخ التطعيم");
- db.vaccines.push({number,date,type});
- log("إضافة تطعيم",type+(number?" - "+number:""));save();vNumber.value="";render();
-}
-function addSale(){
- const date=sDate.value,type=sType.value,count=Number(sCount.value),number=sNumber.value.trim(),price=Number(sPrice.value);
- if(!date||count<=0||price<0)return alert("أكمل بيانات البيع");
- db.sales.push({date,type,count,number,price,total:count*price});
- if(type==="نعجة"&&number){
-  const i=db.herd.findIndex(x=>x.number===number);
-  if(i>=0)db.herd.splice(i,1);
- }
- log("عملية بيع",type+" عدد "+count+" بمبلغ "+money(count*price));
- save();sCount.value="";sNumber.value="";sPrice.value="";render();alert("تم تسجيل البيع");
-}
-function addPurchase(){
- const date=pDate.value,type=pType.value,qty=Number(pQty.value),price=Number(pPrice.value);
- if(!date||qty<=0||price<0)return alert("أكمل بيانات المشتريات");
- db.purchases.push({date,type,qty,price,total:qty*price});
- log("عملية شراء",type+" عدد "+qty+" بمبلغ "+money(qty*price));
- save();pQty.value="";pPrice.value="";render();
-}
-function addExpense(){
- const date=eDate.value,type=eType.value,qty=Number(eQty.value),price=Number(ePrice.value);
- if(!date||qty<=0||price<0)return alert("أكمل بيانات المصروف");
- db.expenses.push({date,type,qty,price,total:qty*price});
- log("مصروف",type+" - "+money(qty*price));save();eQty.value="";ePrice.value="";render();
-}
-function addNote(){
- if(!nText.value.trim())return alert("اكتب الملاحظة");
- db.notes.unshift({date:nDate.value,text:nText.value.trim()});
- log("ملاحظة",nText.value.trim());save();nText.value="";render();
-}
-function addInventory(){
- const x={date:iDate.value,ewes:+iEwes.value||0,rams:+iRams.value||0,males:+iMales.value||0,females:+iFemales.value||0};
- x.total=x.ewes+x.rams+x.males+x.females;
- db.inventory.unshift(x);log("جرد الحلال","الإجمالي "+x.total);save();render();
-}
+    let db={
+     herd:[],births:[],deaths:[],vaccines:[],sales:[],purchases:[],
+     expenses:[],notes:[],inventory:[],activity:[]
+    };
 
-function del(group,index){
- if(!confirm("هل تريد الحذف؟"))return;
- db[group].splice(index,1);log("حذف سجل",group);save();render();
-}
+    function load(){
+     try{
+      const x=JSON.parse(localStorage.getItem(KEY));
+      if(x) db={...db,...x};
+     }catch(e){}
+    }
+    function save(){localStorage.setItem(KEY,JSON.stringify(db));}
+    function esc(v){
+     return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+    }
+    function money(n){return Number(n||0).toLocaleString("ar-SA",{maximumFractionDigits:2});}
+    function today(){return new Date().toISOString().slice(0,10);}
+    function dateObj(s){return s?new Date(s+"T12:00:00"):null;}
+    function daysBetween(a,b=new Date()){
+     const d=dateObj(a); if(!d)return 0;
+     return Math.floor((b-d)/86400000);
+    }
+    function ageText(s){
+     const d=daysBetween(s);
+     if(d<30)return d+" يوم";
 
-function lastBirth(number){
- const a=db.births.filter(x=>x.mother===number).sort((a,b)=>b.date.localeCompare(a.date));
- return a[0]?.date||"";
-}
+     const totalMonths=Math.floor(d/30);
+     const days=d%30;
+     const years=Math.floor(totalMonths/12);
+     const months=totalMonths%12;
+     const parts=[];
 
-function render(){
- const saleTotal=db.sales.reduce((a,x)=>a+Number(x.total||0),0);
- const purchaseTotal=db.purchases.reduce((a,x)=>a+Number(x.total||0),0);
- const expenseTotal=db.expenses.reduce((a,x)=>a+Number(x.total||0),0);
- const birthTotal=db.births.reduce((a,x)=>a+Number(x.total||0),0);
- const deathTotal=db.deaths.reduce((a,x)=>a+Number(x.count||0),0);
- const profit=saleTotal-purchaseTotal-expenseTotal;
+     if(years) parts.push(years+(years===1?" سنة":" سنوات"));
+     if(months) parts.push(months+(months===1?" شهر":" شهور"));
+     if(days) parts.push(days+" يوم");
 
- sHerd.textContent=db.herd.length;
- sBirths.textContent=birthTotal;
- sDeaths.textContent=deathTotal;
- sProfit.textContent=money(profit);
+     return parts.join(" و ");
+    }
+    function addMonths(s,m){
+     const d=dateObj(s);if(!d)return "";
+     d.setMonth(d.getMonth()+m);
+     return d.toISOString().slice(0,10);
+    }
+    function birthCounts(type){
+     if(type==="طلي")return [1,0];
+     if(type==="رخلة")return [0,1];
+     if(type==="طلي ورخلة")return [1,1];
+     if(type==="طليان")return [2,0];
+     if(type==="رخلتين")return [0,2];
+     return [0,0];
+    }
+    function log(action,details){
+     db.activity.unshift({date:new Date().toLocaleString("ar-SA"),action,details});
+     if(db.activity.length>300)db.activity.pop();
+    }
+    function go(id){
+     document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+     document.getElementById(id).classList.add("active");
+     window.scrollTo(0,0);render();
+    }
+    function toggleDark(){
+     document.body.classList.toggle("dark");
+     localStorage.setItem("halalDark",document.body.classList.contains("dark")?"1":"0");
+    }
+    if(localStorage.getItem("halalDark")==="1")document.body.classList.add("dark");
 
- herdTotal.textContent=db.herd.length;
- herdRows.innerHTML=db.herd.map((x,i)=>{
-  const lb=lastBirth(x.number);
-  let reproductive=lb?"والدة":"لا توجد ولادة";
-  if(lb&&daysBetween(lb)>180)reproductive="متأخرة";
-  return `<tr><td>${esc(x.number)}</td><td>${x.dob?ageText(x.dob):"-"}</td><td>${esc(x.condition)}</td><td>${lb||"-"}</td><td>${reproductive}</td><td><button class="delete" onclick="del('herd',${i})">حذف</button></td></tr>`
- }).join("");
+    function addSheep(){
+     const number=hNumber.value.trim();
+     if(!number)return alert("اكتب رقم النعجة");
+     if(db.herd.some(x=>x.number===number))return alert("رقم النعجة مسجل مسبقاً");
+     db.herd.push({number,dob:hDOB.value,condition:hCondition.value});
+     log("إضافة نعجة","رقم "+number);save();hNumber.value="";render();alert("تمت إضافة النعجة");
+    }
+    function addBirth(){
+     const mother=bMother.value.trim(),date=bDate.value,type=bType.value;
+     if(!mother||!date)return alert("أدخل رقم الأم وتاريخ الولادة");
+     const [male,female]=birthCounts(type);
+     db.births.push({mother,date,type,male,female,total:male+female});
+     log("تسجيل ولادة","الأم "+mother+" - "+type);save();bMother.value="";render();alert("تم تسجيل الولادة");
+    }
+    function addDeath(){
+     const date=dDate.value,type=dType.value,count=Number(dCount.value||1),number=dNumber.value.trim();
+     if(!date||count<1)return alert("أكمل بيانات الوفاة");
+     db.deaths.push({date,type,count,number});
+     if(type==="نعجة"&&number){
+      const i=db.herd.findIndex(x=>x.number===number);
+      if(i>=0)db.herd.splice(i,1);
+     }
+     log("تسجيل وفاة",type+" عدد "+count);save();render();alert("تم تسجيل الوفاة");
+    }
+    function addVaccine(){
+     const number=vNumber.value.trim(),date=vDate.value,type=vType.value;
+     if(!date)return alert("اختر تاريخ التطعيم");
+     db.vaccines.push({number,date,type});
+     log("إضافة تطعيم",type+(number?" - "+number:""));save();vNumber.value="";render();
+    }
+    function addSale(){
+     const date=sDate.value,type=sType.value,count=Number(sCount.value),number=sNumber.value.trim(),price=Number(sPrice.value),buyerName=sBuyerName.value.trim(),buyerPhone=sBuyerPhone.value.trim();
+     if(!date||count<=0||price<0)return alert("أكمل بيانات البيع");
+     db.sales.push({date,type,count,number,price,total:count*price,buyerName,buyerPhone});
+     if(type==="نعجة"&&number){
+      const i=db.herd.findIndex(x=>x.number===number);
+      if(i>=0)db.herd.splice(i,1);
+     }
+     log("عملية بيع",type+" عدد "+count+" بمبلغ "+money(count*price));
+     save();sCount.value="";sNumber.value="";sPrice.value="";sBuyerName.value="";sBuyerPhone.value="";render();alert("تم تسجيل البيع");
+    }
+    function addPurchase(){
+     const date=pDate.value,type=pType.value,qty=Number(pQty.value),price=Number(pPrice.value);
+     if(!date||qty<=0||price<0)return alert("أكمل بيانات المشتريات");
+     db.purchases.push({date,type,qty,price,total:qty*price});
+     log("عملية شراء",type+" عدد "+qty+" بمبلغ "+money(qty*price));
+     save();pQty.value="";pPrice.value="";render();
+    }
+    function addExpense(){
+     const date=eDate.value,type=eType.value,qty=Number(eQty.value),price=Number(ePrice.value);
+     if(!date||qty<=0||price<0)return alert("أكمل بيانات المصروف");
+     db.expenses.push({date,type,qty,price,total:qty*price});
+     log("مصروف",type+" - "+money(qty*price));save();eQty.value="";ePrice.value="";render();
+    }
+    function addNote(){
+     if(!nText.value.trim())return alert("اكتب الملاحظة");
+     db.notes.unshift({date:nDate.value,text:nText.value.trim()});
+     log("ملاحظة",nText.value.trim());save();nText.value="";render();
+    }
+    function addInventory(){
+     const x={date:iDate.value,ewes:+iEwes.value||0,rams:+iRams.value||0,males:+iMales.value||0,females:+iFemales.value||0};
+     x.total=x.ewes+x.rams+x.males+x.females;
+     db.inventory.unshift(x);log("جرد الحلال","الإجمالي "+x.total);save();render();
+    }
 
- birthRows.innerHTML=db.births.map((x,i)=>`<tr><td>${esc(x.mother)}</td><td>${x.date}</td><td>${esc(x.type)}</td><td>${x.total}</td><td>${ageText(x.date)}</td><td>${addMonths(x.date,6)}</td><td><button class="delete" onclick="del('births',${i})">حذف</button></td></tr>`).join("");
+    function del(group,index){
+     if(!confirm("هل تريد الحذف؟"))return;
+     db[group].splice(index,1);log("حذف سجل",group);save();render();
+    }
 
- deathRows.innerHTML=db.deaths.map((x,i)=>`<tr><td>${x.date}</td><td>${esc(x.number||"-")}</td><td>${esc(x.type)}</td><td>${x.count}</td><td><button class="delete" onclick="del('deaths',${i})">حذف</button></td></tr>`).join("");
+    function lastBirth(number){
+     const a=db.births.filter(x=>x.mother===number).sort((a,b)=>b.date.localeCompare(a.date));
+     return a[0]?.date||"";
+    }
 
- vaccineRows.innerHTML=db.vaccines.map((x,i)=>{
-  const next=addMonths(x.date,6),left=daysBetween(today(),dateObj(next));
-  return `<tr><td>${esc(x.number||"-")}</td><td>${esc(x.type)}</td><td>${x.date}</td><td>${next}</td><td>${left<0?"متأخر "+Math.abs(left)+" يوم":left+" يوم"}</td><td><button class="delete" onclick="del('vaccines',${i})">حذف</button></td></tr>`
- }).join("");
+    function vaccineMonths(type){return type==="دود"?3:6;}
+    function eweStatus(number){
+     const lb=lastBirth(number);
+     if(!lb)return "لا توجد ولادة";
+     const due=addMonths(lb,6);
+     const left=daysBetween(today(),dateObj(due));
+     if(left<0)return "🔴 متأخرة "+Math.abs(left)+" يوم";
+     if(left<=30)return "🟠 قريبة ولادة - باقي "+left+" يوم";
+     return "والدة";
+    }
+    function renderTodayTasks(){
+     const el=document.getElementById("todayTasks"); if(!el)return;
+     let html="";
+     db.herd.forEach(x=>{
+      const lb=lastBirth(x.number); if(!lb)return;
+      const due=addMonths(lb,6),left=daysBetween(today(),dateObj(due));
+      if(left<=30) html+=`<div class="notice ${left<0?"bad":""}">🐑 النعجة رقم ${esc(x.number)}: ${left<0?"متأخرة "+Math.abs(left)+" يوم":"قريبة ولادة - باقي "+left+" يوم"}</div>`;
+     });
+     db.vaccines.forEach(x=>{
+      const next=addMonths(x.date,vaccineMonths(x.type)),left=daysBetween(today(),dateObj(next));
+      if(left<=30) html+=`<div class="notice ${left<0?"bad":""}">💉 ${esc(x.type)} ${x.number?"للحيوان "+esc(x.number):""}: ${left<0?"متأخر "+Math.abs(left)+" يوم":"متبقي "+left+" يوم"}</div>`;
+     });
+     el.innerHTML=html||'<div class="notice good">✅ لا توجد مهام اليوم</div>';
+    }
 
- salesTotal.textContent=money(saleTotal);
- saleRows.innerHTML=db.sales.map((x,i)=>`<tr><td>${x.date}</td><td>${esc(x.type)}</td><td>${x.count}</td><td>${esc(x.number||"-")}</td><td>${money(x.price)}</td><td>${money(x.total)}</td><td><button class="delete" onclick="del('sales',${i})">حذف</button></td></tr>`).join("");
+    function render(){
+     const saleTotal=db.sales.reduce((a,x)=>a+Number(x.total||0),0);
+     const purchaseTotal=db.purchases.reduce((a,x)=>a+Number(x.total||0),0);
+     const expenseTotal=db.expenses.reduce((a,x)=>a+Number(x.total||0),0);
+     const birthTotal=db.births.reduce((a,x)=>a+Number(x.total||0),0);
+     const deathTotal=db.deaths.reduce((a,x)=>a+Number(x.count||0),0);
+     const profit=saleTotal-purchaseTotal-expenseTotal;
 
- purchaseTotal.textContent=money(purchaseTotal);
- purchaseRows.innerHTML=db.purchases.map((x,i)=>`<tr><td>${x.date}</td><td>${esc(x.type)}</td><td>${x.qty}</td><td>${money(x.price)}</td><td>${money(x.total)}</td><td><button class="delete" onclick="del('purchases',${i})">حذف</button></td></tr>`).join("");
+     sHerd.textContent=db.herd.length;
+     sBirths.textContent=birthTotal;
+     sDeaths.textContent=deathTotal;
+     sProfit.textContent=money(profit);
 
- expenseTotal.textContent=money(expenseTotal);
- expenseRows.innerHTML=db.expenses.map((x,i)=>`<tr><td>${x.date}</td><td>${esc(x.type)}</td><td>${x.qty}</td><td>${money(x.price)}</td><td>${money(x.total)}</td><td><button class="delete" onclick="del('expenses',${i})">حذف</button></td></tr>`).join("");
+     herdTotal.textContent=db.herd.length;
+     herdRows.innerHTML=db.herd.map((x,i)=>{
+      const lb=lastBirth(x.number);
+      let reproductive=eweStatus(x.number);
+      return `<tr><td>${esc(x.number)}</td><td>${x.dob?ageText(x.dob):"-"}</td><td>${esc(x.condition)}</td><td>${lb||"-"}</td><td>${reproductive}</td><td><button class="delete" onclick="del('herd',${i})">حذف</button></td></tr>`
+     }).join("");
 
- noteRows.innerHTML=db.notes.length?db.notes.map((x,i)=>`<div class="notice"><b>${x.date}</b><br>${esc(x.text)}<br><button class="delete" onclick="del('notes',${i})">حذف</button></div>`).join(""):"لا توجد ملاحظات.";
+     birthRows.innerHTML=db.births.map((x,i)=>`<tr><td>${esc(x.mother)}</td><td>${x.date}</td><td>${esc(x.type)}</td><td>${x.total}</td><td>${ageText(x.date)}</td><td>${addMonths(x.date,6)}</td><td><button class="delete" onclick="del('births',${i})">حذف</button></td></tr>`).join("");
 
- inventoryRows.innerHTML=db.inventory.map((x,i)=>`<tr><td>${x.date}</td><td>${x.ewes}</td><td>${x.rams}</td><td>${x.males}</td><td>${x.females}</td><td>${x.total}</td><td><button class="delete" onclick="del('inventory',${i})">حذف</button></td></tr>`).join("");
+     deathRows.innerHTML=db.deaths.map((x,i)=>`<tr><td>${x.date}</td><td>${esc(x.number||"-")}</td><td>${esc(x.type)}</td><td>${x.count}</td><td><button class="delete" onclick="del('deaths',${i})">حذف</button></td></tr>`).join("");
 
- renderAlerts();renderBirthReport();renderProduction();
+     vaccineRows.innerHTML=db.vaccines.map((x,i)=>{
+      const next=addMonths(x.date,vaccineMonths(x.type)),left=daysBetween(today(),dateObj(next));
+      return `<tr><td>${esc(x.number||"-")}</td><td>${esc(x.type)}</td><td>${x.date}</td><td>${next}</td><td>${left<0?"متأخر "+Math.abs(left)+" يوم":left+" يوم"}</td><td><button class="delete" onclick="del('vaccines',${i})">حذف</button></td></tr>`
+     }).join("");
 
- profitResult.innerHTML=`
- <h3>إجمالي البيع: ${money(saleTotal)} ريال</h3>
- <h3>إجمالي المشتريات: ${money(purchaseTotal)} ريال</h3>
- <h3>إجمالي المصاريف: ${money(expenseTotal)} ريال</h3>
- <hr><div class="bigNumber">صافي الربح / الخسارة: ${money(profit)} ريال</div>`;
+     salesTotal.textContent=money(saleTotal);
+     saleRows.innerHTML=db.sales.map((x,i)=>`<tr><td>${x.date}</td><td>${esc(x.type)}</td><td>${x.count}</td><td>${esc(x.number||"-")}</td><td>${money(x.price)}</td><td>${money(x.total)}</td><td>${esc(x.buyerName||"-")}</td><td>${esc(x.buyerPhone||"-")}</td><td><button class="delete" onclick="del('sales',${i})">حذف</button></td></tr>`).join("");
 
- const latestBirth=[...db.births].sort((a,b)=>b.date.localeCompare(a.date))[0]?.date||"-";
- const latestSale=[...db.sales].sort((a,b)=>b.date.localeCompare(a.date))[0]?.date||"-";
- summaryResult.innerHTML=`
- <h3>عدد القطيع: ${db.herd.length}</h3>
- <h3>إجمالي المواليد: ${birthTotal}</h3>
- <h3>عدد الوفيات: ${deathTotal}</h3>
- <h3>آخر ولادة: ${latestBirth}</h3>
- <h3>آخر بيع: ${latestSale}</h3>
- <h3>عدد المبيع: ${db.sales.reduce((a,x)=>a+x.count,0)}</h3>
- <h3>إجمالي البيع: ${money(saleTotal)} ريال</h3>
- <h3>إجمالي المشتريات: ${money(purchaseTotal)} ريال</h3>
- <h3>إجمالي المصاريف: ${money(expenseTotal)} ريال</h3>
- <div class="bigNumber">الصافي: ${money(profit)} ريال</div>`;
+     purchaseTotal.textContent=money(purchaseTotal);
+     purchaseRows.innerHTML=db.purchases.map((x,i)=>`<tr><td>${x.date}</td><td>${esc(x.type)}</td><td>${x.qty}</td><td>${money(x.price)}</td><td>${money(x.total)}</td><td><button class="delete" onclick="del('purchases',${i})">حذف</button></td></tr>`).join("");
 
- activityRows.innerHTML=db.activity.length?db.activity.map(x=>`<div class="notice"><b>${esc(x.action)}</b><br>${esc(x.details)}<br><small>${esc(x.date)}</small></div>`).join(""):"لا توجد حركات.";
-}
+     expenseTotal.textContent=money(expenseTotal);
+     expenseRows.innerHTML=db.expenses.map((x,i)=>`<tr><td>${x.date}</td><td>${esc(x.type)}</td><td>${x.qty}</td><td>${money(x.price)}</td><td>${money(x.total)}</td><td><button class="delete" onclick="del('expenses',${i})">حذف</button></td></tr>`).join("");
 
-function renderAlerts(){
- let html="";
- db.vaccines.forEach(x=>{
-  const next=addMonths(x.date,6),left=daysBetween(today(),dateObj(next));
-  if(left<=30){
-   html+=`<div class="notice ${left<0?"bad":""}">💉 ${esc(x.type)} ${x.number?"للحيوان "+esc(x.number):""}: ${left<0?"متأخر "+Math.abs(left)+" يوم":"متبقي "+left+" يوم"}</div>`;
-  }
- });
- db.herd.forEach(x=>{
-  const lb=lastBirth(x.number);
-  if(lb&&daysBetween(lb)>180)html+=`<div class="notice bad">🐑 النعجة رقم ${esc(x.number)} تجاوزت 6 أشهر من آخر ولادة (${lb})</div>`;
- });
- alertRows.innerHTML=html||'<div class="notice good">لا توجد تنبيهات حالياً.</div>';
-}
+     noteRows.innerHTML=db.notes.length?db.notes.map((x,i)=>`<div class="notice"><b>${x.date}</b><br>${esc(x.text)}<br><button class="delete" onclick="del('notes',${i})">حذف</button></div>`).join(""):"لا توجد ملاحظات.";
 
-function renderBirthReport(){
- let male=0,female=0;
- db.births.forEach(x=>{male+=x.male||0;female+=x.female||0});
- birthReportResult.innerHTML=`
- <h3>عدد عمليات الولادة: ${db.births.length}</h3>
- <h3>الطليان: ${male}</h3>
- <h3>الرخال: ${female}</h3>
- <div class="bigNumber">إجمالي المواليد: ${male+female}</div>`;
-}
+     inventoryRows.innerHTML=db.inventory.map((x,i)=>`<tr><td>${x.date}</td><td>${x.ewes}</td><td>${x.rams}</td><td>${x.males}</td><td>${x.females}</td><td>${x.total}</td><td><button class="delete" onclick="del('inventory',${i})">حذف</button></td></tr>`).join("");
 
-function renderProduction(){
- const map={};
- db.births.forEach(x=>{
-  if(!map[x.mother])map[x.mother]={events:0,male:0,female:0,total:0,last:""};
-  const a=map[x.mother];a.events++;a.male+=x.male||0;a.female+=x.female||0;a.total+=x.total||0;
-  if(!a.last||x.date>a.last)a.last=x.date;
- });
- productionRows.innerHTML=Object.entries(map).sort((a,b)=>b[1].total-a[1].total).map(([n,x])=>`<tr><td>${esc(n)}</td><td>${x.events}</td><td>${x.male}</td><td>${x.female}</td><td>${x.total}</td><td>${x.last}</td></tr>`).join("");
-}
+     renderAlerts();renderBirthReport();renderProduction();renderTodayTasks();renderPeriodReport();
 
-function showEweReport(){
- const n=reportNumber.value.trim();if(!n)return alert("اكتب رقم النعجة");
- const sheep=db.herd.find(x=>x.number===n);
- const bs=db.births.filter(x=>x.mother===n);
- let male=0,female=0;bs.forEach(x=>{male+=x.male||0;female+=x.female||0});
- const last=[...bs].sort((a,b)=>b.date.localeCompare(a.date))[0]?.date||"-";
- eweReportResult.innerHTML=`
- <h2>النعجة رقم ${esc(n)}</h2>
- <p><b>موجودة في القطيع:</b> ${sheep?"نعم":"لا"}</p>
- <p><b>الحالة:</b> ${sheep?esc(sheep.condition):"-"}</p>
- <p><b>عدد الولادات:</b> ${bs.length}</p>
- <p><b>الطليان:</b> ${male}</p>
- <p><b>الرخال:</b> ${female}</p>
- <p><b>إجمالي المواليد:</b> ${male+female}</p>
- <p><b>آخر ولادة:</b> ${last}</p>
- <p><b>الولادة المتوقعة:</b> ${last!=="-"?addMonths(last,6):"-"}</p>`;
-}
+     profitResult.innerHTML=`
+     <h3>إجمالي البيع: ${money(saleTotal)} ريال</h3>
+     <h3>إجمالي المشتريات: ${money(purchaseTotal)} ريال</h3>
+     <h3>إجمالي المصاريف: ${money(expenseTotal)} ريال</h3>
+     <hr><div class="bigNumber">صافي الربح / الخسارة: ${money(profit)} ريال</div>`;
 
-function showSeason(){
- const from=seasonFrom.value,to=seasonTo.value;
- if(!from||!to)return alert("اختر تاريخ البداية والنهاية");
- const a=db.births.filter(x=>x.date>=from&&x.date<=to);
- let male=0,female=0;a.forEach(x=>{male+=x.male||0;female+=x.female||0});
- const mothers=new Set(a.map(x=>x.mother));
- seasonResult.innerHTML=`
- <h3>عدد الأمهات التي ولدت: ${mothers.size}</h3>
- <h3>عدد عمليات الولادة: ${a.length}</h3>
- <h3>الطليان: ${male}</h3>
- <h3>الرخال: ${female}</h3>
- <div class="bigNumber">إجمالي المواليد: ${male+female}</div>`;
-}
+     const latestBirth=[...db.births].sort((a,b)=>b.date.localeCompare(a.date))[0]?.date||"-";
+     const latestSale=[...db.sales].sort((a,b)=>b.date.localeCompare(a.date))[0]?.date||"-";
+     summaryResult.innerHTML=`
+     <h3>عدد القطيع: ${db.herd.length}</h3>
+     <h3>إجمالي المواليد: ${birthTotal}</h3>
+     <h3>عدد الوفيات: ${deathTotal}</h3>
+     <h3>آخر ولادة: ${latestBirth}</h3>
+     <h3>آخر بيع: ${latestSale}</h3>
+     <h3>عدد المبيع: ${db.sales.reduce((a,x)=>a+x.count,0)}</h3>
+     <h3>إجمالي البيع: ${money(saleTotal)} ريال</h3>
+     <h3>إجمالي المشتريات: ${money(purchaseTotal)} ريال</h3>
+     <h3>إجمالي المصاريف: ${money(expenseTotal)} ريال</h3>
+     <div class="bigNumber">الصافي: ${money(profit)} ريال</div>`;
 
-function exportBackup(){
- const blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"});
- const a=document.createElement("a");a.href=URL.createObjectURL(blob);
- a.download="halal-abu-khalid-backup-"+today()+".json";a.click();URL.revokeObjectURL(a.href);
-}
-function importBackup(){
- const f=backupFile.files[0];if(!f)return alert("اختر ملف النسخة الاحتياطية");
- const r=new FileReader();
- r.onload=()=>{
-  try{
-   const x=JSON.parse(r.result);
-   if(!confirm("سيتم استبدال البيانات الحالية. هل تريد المتابعة؟"))return;
-   db={...db,...x};save();render();alert("تمت استعادة النسخة بنجاح");
-  }catch(e){alert("ملف النسخة غير صالح");}
- };
- r.readAsText(f);
-}
+     activityRows.innerHTML=db.activity.length?db.activity.map(x=>`<div class="notice"><b>${esc(x.action)}</b><br>${esc(x.details)}<br><small>${esc(x.date)}</small></div>`).join(""):"لا توجد حركات.";
+    }
 
-load();
-["bDate","dDate","vDate","sDate","pDate","eDate","nDate","iDate"].forEach(id=>{
- const el=document.getElementById(id);if(el)el.value=today();
-});
-render();
-</script>
+    function renderAlerts(){
+     let html="";
+     db.vaccines.forEach(x=>{
+      const next=addMonths(x.date,vaccineMonths(x.type)),left=daysBetween(today(),dateObj(next));
+      if(left<=30){
+       html+=`<div class="notice ${left<0?"bad":""}">💉 ${esc(x.type)} ${x.number?"للحيوان "+esc(x.number):""}: ${left<0?"متأخر "+Math.abs(left)+" يوم":"متبقي "+left+" يوم"}</div>`;
+      }
+     });
+     db.herd.forEach(x=>{
+      const lb=lastBirth(x.number); if(!lb)return;
+      const due=addMonths(lb,6),left=daysBetween(today(),dateObj(due));
+      if(left<=30)html+=`<div class="notice ${left<0?"bad":""}">🐑 النعجة رقم ${esc(x.number)}: ${left<0?"متأخرة "+Math.abs(left)+" يوم":"قريبة ولادة - باقي "+left+" يوم"}</div>`;
+     });
+     alertRows.innerHTML=html||'<div class="notice good">لا توجد تنبيهات حالياً.</div>';
+    }
 
-  <script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./sw.js");
-}
-</script>
-  <script>
-(async()=>{
-const K="AK_DEVICE",A="AK_ACTIVE";
-let d=localStorage.getItem(K);
-if(!d){
- d="AK-"+crypto.randomUUID().slice(0,8).toUpperCase();
- localStorage.setItem(K,d);
-}
-if(localStorage.getItem(A)!=="YES"){
- const c=prompt("حلال أبو خالد\n\nرقم جهازك:\n"+d+"\n\nأرسل رقم الجهاز لأبو خالد، ثم أدخل كود التفعيل:");
- if(c){
-  const x=new TextEncoder().encode(d+"|ABU-KHALID-2026");
-  const h=await crypto.subtle.digest("SHA-256",x);
-  const ok=Array.from(new Uint8Array(h)).slice(0,6).map(b=>b.toString(16).padStart(2,"0")).join("").toUpperCase();
-  if(c.trim().toUpperCase()===ok){
-   localStorage.setItem(A,"YES");
-   alert("تم تفعيل البرنامج بنجاح");
-   location.reload();
-  }else{
-   alert("كود التفعيل غير صحيح");
-   document.body.innerHTML="<h2 style='text-align:center;margin-top:100px'>🔒 البرنامج غير مُفعّل</h2>";
-  }
- }else{
-  document.body.innerHTML="<h2 style='text-align:center;margin-top:100px'>🔒 البرنامج غير مُفعّل</h2>";
- }
-}
-})();
-</script>
-  </body>
-  
-</html>
+    function renderBirthReport(){
+     let male=0,female=0;
+     db.births.forEach(x=>{male+=x.male||0;female+=x.female||0});
+     birthReportResult.innerHTML=`
+     <h3>عدد عمليات الولادة: ${db.births.length}</h3>
+     <h3>الطليان: ${male}</h3>
+     <h3>الرخال: ${female}</h3>
+     <div class="bigNumber">إجمالي المواليد: ${male+female}</div>`;
+    }
+
+    function renderPeriodReport(){
+     const el=document.getElementById("periodReportResult"); if(!el)return;
+     const months=Number(document.getElementById("periodMonths")?.value||1);
+     const end=new Date(); end.setHours(23,59,59,999);
+     const start=new Date(end); start.setMonth(start.getMonth()-months); start.setHours(0,0,0,0);
+     const inPeriod=x=>{const d=dateObj(x.date);return d&&d>=start&&d<=end};
+     const sales=db.sales.filter(inPeriod), purchases=db.purchases.filter(inPeriod), expenses=db.expenses.filter(inPeriod), births=db.births.filter(inPeriod), deaths=db.deaths.filter(inPeriod);
+     const sale=sales.reduce((a,x)=>a+Number(x.total||0),0);
+     const purchase=purchases.reduce((a,x)=>a+Number(x.total||0),0);
+     const expense=expenses.reduce((a,x)=>a+Number(x.total||0),0);
+     const profit=sale-purchase-expense;
+     const born=births.reduce((a,x)=>a+Number(x.total||0),0);
+     const mothers=new Set(births.map(x=>x.mother).filter(Boolean)).size;
+     const dead=deaths.reduce((a,x)=>a+Number(x.count||0),0);
+     el.innerHTML=`<h3>الفترة: آخر ${months===1?"شهر":months===12?"سنة":months+" شهور"}</h3>
+     <h3>إجمالي البيع: ${money(sale)} ريال</h3><h3>إجمالي المشتريات: ${money(purchase)} ريال</h3><h3>إجمالي المصاريف: ${money(expense)} ريال</h3>
+     <hr><div class="bigNumber">${profit>=0?"الربح":"الخسارة"}: ${money(Math.abs(profit))} ريال</div><hr>
+     <h3>عدد المواليد: ${born}</h3><h3>عدد النعاج التي ولدت: ${mothers}</h3><h3>عدد الوفيات (النفوق): ${dead}</h3>`;
+    }
+
+    function renderProduction(){
+     const map={};
+     db.births.forEach(x=>{
+      if(!map[x.mother])map[x.mother]={events:0,male:0,female:0,total:0,last:""};
+      const a=map[x.mother];a.events++;a.male+=x.male||0;a.female+=x.female||0;a.total+=x.total||0;
+      if(!a.last||x.date>a.last)a.last=x.date;
+     });
+     productionRows.innerHTML=Object.entries(map).sort((a,b)=>b[1].total-a[1].total).map(([n,x])=>`<tr><td>${esc(n)}</td><td>${x.events}</td><td>${x.male}</td><td>${x.female}</td><td>${x.total}</td><td>${x.last}</td></tr>`).join("");
+    }
+
+    function showEweReport(){
+     const n=reportNumber.value.trim();if(!n)return alert("اكتب رقم النعجة");
+     const sheep=db.herd.find(x=>x.number===n);
+     const bs=db.births.filter(x=>x.mother===n);
+     let male=0,female=0;bs.forEach(x=>{male+=x.male||0;female+=x.female||0});
+     const last=[...bs].sort((a,b)=>b.date.localeCompare(a.date))[0]?.date||"-";
+     eweReportResult.innerHTML=`
+     <h2>النعجة رقم ${esc(n)}</h2>
+     <p><b>موجودة في القطيع:</b> ${sheep?"نعم":"لا"}</p>
+     <p><b>الحالة:</b> ${sheep?esc(sheep.condition):"-"}</p>
+     <p><b>عدد الولادات:</b> ${bs.length}</p>
+     <p><b>الطليان:</b> ${male}</p>
+     <p><b>الرخال:</b> ${female}</p>
+     <p><b>إجمالي المواليد:</b> ${male+female}</p>
+     <p><b>آخر ولادة:</b> ${last}</p>
+     <p><b>الولادة المتوقعة:</b> ${last!=="-"?addMonths(last,6):"-"}</p>`;
+    }
+
+    function showSeason(){
+     const from=seasonFrom.value,to=seasonTo.value;
+     if(!from||!to)return alert("اختر تاريخ البداية والنهاية");
+     const a=db.births.filter(x=>x.date>=from&&x.date<=to);
+     let male=0,female=0;a.forEach(x=>{male+=x.male||0;female+=x.female||0});
+     const mothers=new Set(a.map(x=>x.mother));
+     seasonResult.innerHTML=`
+     <h3>عدد الأمهات التي ولدت: ${mothers.size}</h3>
+     <h3>عدد عمليات الولادة: ${a.length}</h3>
+     <h3>الطليان: ${male}</h3>
+     <h3>الرخال: ${female}</h3>
+     <div class="bigNumber">إجمالي المواليد: ${male+female}</div>`;
+    }
+
+    function exportBackup(){
+     const blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"});
+     const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+     a.download="halal-abu-khalid-backup-"+today()+".json";a.click();URL.revokeObjectURL(a.href);
+    }
+    function importBackup(){
+     const f=backupFile.files[0];if(!f)return alert("اختر ملف النسخة الاحتياطية");
+     const r=new FileReader();
+     r.onload=()=>{
+      try{
+       const x=JSON.parse(r.result);
+       if(!confirm("سيتم استبدال البيانات الحالية. هل تريد المتابعة؟"))return;
+       db={...db,...x};save();render();alert("تمت استعادة النسخة بنجاح");
+      }catch(e){alert("ملف النسخة غير صالح");}
+     };
+     r.readAsText(f);
+    }
+
+    load();
+    ["bDate","dDate","vDate","sDate","pDate","eDate","nDate","iDate"].forEach(id=>{
+     const el=document.getElementById(id);if(el)el.value=today();
+    });
+    render();
+    </script>
+
+      <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js");
+    }
+    </script>
+      <script>
+    (async()=>{
+    const K="AK_DEVICE",A="AK_ACTIVE";
+    let d=localStorage.getItem(K);
+    if(!d){
+     d="AK-"+crypto.randomUUID().slice(0,8).toUpperCase();
+     localStorage.setItem(K,d);
+    }
+    if(localStorage.getItem(A)!=="YES"){
+     const c=prompt("حلال أبو خالد\n\nرقم جهازك:\n"+d+"\n\nأرسل رقم الجهاز لأبو خالد، ثم أدخل كود التفعيل:");
+     if(c){
+      const x=new TextEncoder().encode(d+"|ABU-KHALID-2026");
+      const h=await crypto.subtle.digest("SHA-256",x);
+      const ok=Array.from(new Uint8Array(h)).slice(0,6).map(b=>b.toString(16).padStart(2,"0")).join("").toUpperCase();
+      if(c.trim().toUpperCase()===ok){
+       localStorage.setItem(A,"YES");
+       alert("تم تفعيل البرنامج بنجاح");
+       location.reload();
+      }else{
+       alert("كود التفعيل غير صحيح");
+       document.body.innerHTML="<h2 style='text-align:center;margin-top:100px'>🔒 البرنامج غير مُفعّل</h2>";
+      }
+     }else{
+      document.body.innerHTML="<h2 style='text-align:center;margin-top:100px'>🔒 البرنامج غير مُفعّل</h2>";
+     }
+    }
+    })();
+    </script>
+      </body>
+      
+    </html>
